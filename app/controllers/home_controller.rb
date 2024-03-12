@@ -1,3 +1,5 @@
 class HomeController < ApplicationController
-  def index; end
+  def index
+    @space_types = SpaceType.all.pluck(:name)
+  end
 end

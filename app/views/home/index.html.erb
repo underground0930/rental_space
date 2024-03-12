@@ -3,9 +3,7 @@
   <div class="hero-content text-center text-neutral-content">
     <div class="flex gap-[30px]">
       <div class="w-[200px]">
-        <select class="select select-bordered w-full max-w-xs">
-          <option disabled selected>会場タイプ</option>
-        </select>
+        <%= select("post", "person_name", @space_types, {},{class: "select select-bordered w-full max-w-xs"}) %>
       </div>
       <div class="w-[300px]">
         <input type="text" placeholder="キーワード" class="input input-bordered w-full max-w-xs" />
