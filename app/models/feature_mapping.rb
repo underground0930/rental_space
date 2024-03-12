@@ -1,0 +1,2 @@
+class FeatureMapping < ApplicationRecord
+end
