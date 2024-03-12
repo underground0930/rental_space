@@ -1,2 +1,0 @@
-class SpaceMapping < ApplicationRecord
-end
