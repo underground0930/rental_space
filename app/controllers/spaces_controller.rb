@@ -21,7 +21,7 @@ class SpacesController < ApplicationController
   end
 
   def new
-    # レコードを１つ作成するためのフォームを表示
+    @space = Space.new
   end
 
   def create

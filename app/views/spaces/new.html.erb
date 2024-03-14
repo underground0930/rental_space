@@ -1,0 +1,26 @@
+
+<%= form_with model:@space, local: true do |form| %>
+
+  <%= form.label :name, class:"form-control w-full max-w-xs" do %>
+    <div class="label">
+      <span class="label-text">Name</span>
+    </div>
+    <%= form.text_field :name, class: 'input input-bordered w-full max-w-xs' %>
+  <% end %>
+
+  <%= form.label :description, class:"form-control w-full max-w-xs" do %>
+    <div class="label">
+      <span class="label-text">Description</span>
+    </div>
+    <%= form.text_field :description, class: 'input input-bordered w-full max-w-xs' %>
+  <% end %>
+
+  <%= form.label :address, placeholder: "住所", class: 'input input-bordered w-full max-w-xs' do %>
+    <div class="label">
+      <span class="label-text">Description</span>
+    </div>
+    <%= form.text_field :address, class: 'input input-bordered w-full max-w-xs' %>
+  <% end %>
+
+<% end %>
+
