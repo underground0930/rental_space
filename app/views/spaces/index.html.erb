@@ -1,6 +1,5 @@
 
 <div class="my-[150px]">
-  <%= debug @hoge %>
 
   <div class="flex items-center justify-center mb-[100px]">
     <%= render 'shared/search_form' %>  
@@ -10,7 +9,9 @@
       <div class="flex items-center justify-center">
         <%== pagy_nav(@pagy) %>
       </div>
-      <%= render @spaces %>
+      <div class="py-[50px]">
+        <%= render @spaces %>
+      </div>
       <div class="flex items-center justify-center">
         <%== pagy_nav(@pagy) %>
       </div>

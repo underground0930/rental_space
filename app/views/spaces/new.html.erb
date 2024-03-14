@@ -1,6 +1,6 @@
 
 <div class="w-[800px] mx-auto my-[100px]">
-  <%= form_with model:@space, local: true do |form| %>
+  <%= form_with model:@space, local: false do |form| %>
 
     <%= form.label :name, class:"form-control w-full max-w-xs" do %>
       <div class="label"><span class="label-text">Name</span></div>
@@ -39,6 +39,21 @@
         </div>
       <% end %>
     <% end %>
+
+    <div class="flex gap-5 mb-5">
+      <%= form.label :latitude, class: 'form-control w-full max-w-xs' do %>
+        <div class="label"><span class="label-text">Latitude</span></div>
+        <%= form.text_field :latitude, {class: 'input input-bordered w-full max-w-xs', readonly:true} %>
+      <% end %>
+
+      <%= form.label :longitude, class: 'form-control w-full max-w-xs' do %>
+        <div class="label"><span class="label-text">Longitude</span></div>
+        <%= form.text_field :Longitude, {class: 'input input-bordered w-full max-w-xs', readonly:true} %>
+      <% end %>
+    </div>
+
+
+    <%= form.submit class:"btn btn-primary" %>
 
   <% end %>
 </div>
