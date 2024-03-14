@@ -3,7 +3,6 @@ class SpacesController < ApplicationController
   def index
     # 一覧を表示
     @spaces = Space.all
-
     if params[:space_type_id].present?
       @spaces = @spaces.joins(:space_type_mappings).where(space_type_mappings: {space_type_id: params[:space_type_id]})
     end
@@ -13,10 +12,12 @@ class SpacesController < ApplicationController
     end
 
     if params[:keyword].present?
-      @spaces = @spaces.where('spaces.name LIKE :keyword OR spaces.description LIKE :keyword OR spaces.address LIKE :keyword OR spaces.nearest_station LIKE :keyword',
+      @pagy, @spaces = @spaces.where('spaces.name LIKE :keyword OR spaces.description LIKE :keyword OR spaces.address LIKE :keyword OR spaces.nearest_station LIKE :keyword',
         keyword: '%#{params[:keyword]}%'
       )
     end
+
+    @pagy, @spaces = pagy(@spaces)
   end
 
   def new
