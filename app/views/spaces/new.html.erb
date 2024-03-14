@@ -1,28 +1,45 @@
 
-<%= form_with model:@space, local: true do |form| %>
+<div class="w-[800px] mx-auto my-[100px]">
+  <%= form_with model:@space, local: true do |form| %>
 
-  <%= form.label :name, class:"form-control w-full max-w-xs" do %>
-    <div class="label">
-      <span class="label-text">Name</span>
-    </div>
-    <%= form.text_field :name, class: 'input input-bordered w-full max-w-xs' %>
+    <%= form.label :name, class:"form-control w-full max-w-xs" do %>
+      <div class="label"><span class="label-text">Name</span></div>
+      <%= form.text_field :name, class: 'input input-bordered w-full max-w-xs' %>
+    <% end %>
+
+    <%= form.label :description, class:"form-control w-full max-w-xs" do %>
+      <div class="label"><span class="label-text">Description</span></div>
+      <%= form.text_field :description, class: 'input input-bordered w-full max-w-xs' %>
+    <% end %>
+
+    <%= form.label :address, class:"form-control w-full max-w-xs" do %>
+      <div class="label"><span class="label-text">Address</span></div>
+      <%= form.text_field :address, class: 'input input-bordered w-full max-w-xs' %>
+    <% end %>
+
+    <%= form.label :nearest_station, class: 'form-control w-full max-w-xs' do %>
+      <div class="label"><span class="label-text">Nearest station</span></div>
+      <%= form.text_field :nearest_station, class: 'input input-bordered w-full max-w-xs' %>
+    <% end %>
+
+    <%= form.label :space_types, class: 'form-control w-full max-w-xs' do %>
+      <div class="label"><span class="label-text">Space Types</span></div>
+      <%= form.collection_select :space_type, SpaceType.all, :id, :name, {include_blank: "会場タイプ"}, {class: "select select-bordered w-full max-w-xs"} %>
+    <% end %>
+
+    <%= form.label :features, class: 'form-control w-full max-w-xs' do %>
+      <div class="label"><span class="label-text">Features</span></div>
+      <%= form.collection_check_boxes :feature_ids, Feature.all, :id, :name do |b| %>
+        <div class="form-control mr-2">
+          <%= b.label class: "label cursor-pointer" do %>
+            <span class="label-text"><%= b.text %></span>
+            <span class="inline-block w-[10px]"></span>
+            <%= b.check_box class: "checkbox checkbox-primary" %>
+          <% end %>
+        </div>
+      <% end %>
+    <% end %>
+
   <% end %>
-
-  <%= form.label :description, class:"form-control w-full max-w-xs" do %>
-    <div class="label">
-      <span class="label-text">Description</span>
-    </div>
-    <%= form.text_field :description, class: 'input input-bordered w-full max-w-xs' %>
-  <% end %>
-
-  <%= form.label :address, placeholder: "住所", class: 'input input-bordered w-full max-w-xs' do %>
-    <div class="label">
-      <span class="label-text">Description</span>
-    </div>
-    <%= form.text_field :address, class: 'input input-bordered w-full max-w-xs' %>
-  <% end %>
-
-
-
-<% end %>
+</div>
 
