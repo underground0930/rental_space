@@ -1,6 +1,6 @@
 <%= link_to space_path(space) do %>
   <div class="card card-side bg-base-100 shadow-xl">
-    <figure><img src="https://daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg" alt=""/></figure>
+    <figure><%= image_tag space.main_image, size: '400x225' %></figure>
     <div class="card-body">
       <h2 class="card-title"><%= space.name %></h2>
       <div class="flex mb-[5px]">
@@ -20,19 +20,18 @@
         <span><%= space.address %></span>
       </div>
       <div class="flex mb-[5px]">
-        <div class="badge badge-outline">
-          aaa
-        </div>
-        <div class="badge badge-outline">
-          bbb
-        </div>
+        <% space.features.each do |feature| %>
+          <div class="badge badge-outline">
+            <%= feature.name %>
+          </div>
+        <% end %>
       </div>
       <div class="rating">
-        <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
-        <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" checked />
-        <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
-        <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
-        <input type="radio" name="rating-2" class="mask mask-star-2 bg-orange-400" />
+        <input type="radio" name="rating-<%= space.id %>" class="mask mask-star-2 bg-orange-400" />
+        <input type="radio" name="rating-<%= space.id %>" class="mask mask-star-2 bg-orange-400" checked />
+        <input type="radio" name="rating-<%= space.id %>" class="mask mask-star-2 bg-orange-400" />
+        <input type="radio" name="rating-<%= space.id %>" class="mask mask-star-2 bg-orange-400" />
+        <input type="radio" name="rating-<%= space.id %>" class="mask mask-star-2 bg-orange-400" />
       </div>
     </div>
   </div>

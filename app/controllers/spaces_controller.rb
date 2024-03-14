@@ -12,7 +12,7 @@ class SpacesController < ApplicationController
     end
 
     if params[:keyword].present?
-      @pagy, @spaces = @spaces.where('spaces.name LIKE :keyword OR spaces.description LIKE :keyword OR spaces.address LIKE :keyword OR spaces.nearest_station LIKE :keyword',
+      @spaces = @spaces.where('spaces.name LIKE :keyword OR spaces.description LIKE :keyword OR spaces.address LIKE :keyword OR spaces.nearest_station LIKE :keyword',
         keyword: '%#{params[:keyword]}%'
       )
     end

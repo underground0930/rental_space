@@ -4,7 +4,7 @@
       <%= form.collection_select :space_type_id, SpaceType.all, :id, :name, {include_blank: '会場タイプ'}, {class: "select select-bordered w-full max-w-xs"} %>
     </div>
     <div class="w-[300px]">
-      <%= form.text_field :keyword, class: 'input input-bordered w-full max-w-xs', placeholder:"キーワード" %>
+      <%= form.text_field :keyword, class: 'input input-bordered w-full max-w-xs', placeholder:"キーワード", value: params[:keyword] %>
     </div>
     <div>
       <label for="my_modal_6" class="btn btn-active">こだわり条件</label>
