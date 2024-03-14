@@ -3,7 +3,7 @@
   <%= form_with model:@space, local: false do |form| %>
 
     <%= form.label :name, class:"form-control w-full max-w-xs" do %>
-      <div class="label"><span class="label-text">Name</span></div>
+      <div class="label"><span class="label-text">Name</span>`</div>
       <%= form.text_field :name, class: 'input input-bordered w-full max-w-xs' %>
     <% end %>
 
@@ -52,6 +52,8 @@
       <% end %>
     </div>
 
+
+    <div data-set-location-target="map" id="map" class="h-[500px] mb-5"></div>
 
     <%= form.submit class:"btn btn-primary" %>
 
