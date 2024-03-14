@@ -1,1 +1,18 @@
-<%= debug @spaces %>
+
+<div class="my-[150px]">
+  <div class="flex items-center justify-center mb-[100px]">
+    <%= render 'shared/search_form' %>  
+  </div>
+  <div>
+    <div class="max-w-[800px] mx-auto">
+      <div class="flex items-center justify-center">
+        <%== pagy_nav(@pagy) %>
+      </div>
+      <%= render @spaces %>
+      <div class="flex items-center justify-center">
+        <%== pagy_nav(@pagy) %>
+      </div>
+    </div>
+  </div>
+</div>
+
