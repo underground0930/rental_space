@@ -7,7 +7,7 @@ class SpacesController < ApplicationController
       @spaces = @spaces.joins(:space_type_mappings).where(space_type_mappings: {space_type_id: params[:space_type_id]})
     end
 
-    if params[:feature_ids].present?
+    if params[:feature_ids].present? && !params[:feature_ids].all?(&:blank?)
       @spaces = @spaces.joins(:feature_mappings).where(feature_mappings: {feature_id: params[:feature_ids]}).distinct
     end
 
