@@ -1,21 +1,36 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="map"
+const myLatlng = { lat: 35.686067, lng: 139.760296 };
+
 export default class extends Controller {
+  static targets = ['map','latitude','longitude']
+
   connect() {
-    alert("aaa")
-    let map;
-
-    async function initMap() {
-      const { Map } = await google.maps.importLibrary("maps");
-    
-      map = new Map(document.getElementById("map"), {
-        center: { lat: -34.397, lng: 150.644 },
-        zoom: 8,
-      });
-    }
-    
-    initMap();
-
+    this.initMap();
   }
+
+  async initMap() {
+    const target = this.mapTarget;
+    const { Map } = await google.maps.importLibrary("maps");
+
+    this.map = new Map(target, {
+      center: myLatlng,
+      zoom: 13,
+    });
+
+    this.marker = new google.maps.Marker({
+      position: myLatlng,
+      map:this.map,
+      title: "Click to zoom",
+    });
+
+    this.map.addListener("click", (e) => {
+      this.marker.setPosition(e.latLng)
+      this.map.panTo(e.latLng);
+      this.latitudeTarget.value = e.latLng.lat();
+      this.longitudeTarget.value = e.latLng.lng();
+    });
+    
+  }
+
 }
