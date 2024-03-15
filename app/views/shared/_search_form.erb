@@ -1,10 +1,10 @@
 <%= form_with(url: spaces_path, method: :get, local: true) do |form| %>
   <div class="flex gap-[30px]">
     <div class="w-[200px]">
-      <%= form.collection_select :space_type_id, SpaceType.all, :id, :name, {include_blank: '会場タイプ'}, {class: "select select-bordered w-full max-w-xs"} %>
+      <%= form.collection_select :space_type_id, SpaceType.all, :id, :name, {include_blank: '会場タイプ',selected: params[:space_type_id]}, {class: "select select-bordered w-full max-w-xs"} %>
     </div>
     <div class="w-[300px]">
-      <%= form.text_field :keyword, class: 'input input-bordered w-full max-w-xs', placeholder:"キーワード" %>
+      <%= form.text_field :keyword, class: 'input input-bordered w-full max-w-xs', placeholder:"キーワード", value: params[:keyword] %>
     </div>
     <div>
       <label for="my_modal_6" class="btn btn-active">こだわり条件</label>
@@ -18,7 +18,7 @@
               <%= b.label class: "label cursor-pointer" do %>
                 <span class="label-text"><%= b.text %></span>
                 <span class="inline-block w-[10px]"></span>
-                <%= b.check_box class: "checkbox checkbox-primary" %>
+                <%= b.check_box checked: params[:feature_ids]&.include?(b.value.to_s), class: "checkbox checkbox-primary" %>
               <% end %>
             </div>
             <% end %>
