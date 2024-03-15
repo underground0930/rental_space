@@ -24,7 +24,7 @@
 
     <%= form.label :space_types, class: 'form-control w-full max-w-xs' do %>
       <div class="label"><span class="label-text">Space Types</span></div>
-      <%= form.collection_select :space_type, SpaceType.all, :id, :name, {include_blank: "会場タイプ"}, {class: "select select-bordered w-full max-w-xs"} %>
+      <%= form.collection_select :space_type_ids, SpaceType.all, :id, :name, {include_blank: "会場タイプ"}, {class: "select select-bordered w-full max-w-xs"} %>
     <% end %>
 
     <%= form.label :features, class: 'form-control w-full max-w-xs' do %>
