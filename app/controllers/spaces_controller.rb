@@ -35,7 +35,7 @@ class SpacesController < ApplicationController
   end
 
   def show
-    # レコードを１つ表示
+    @space = Space.find(params[:id])
   end
 
   def edit
