@@ -1,7 +1,8 @@
 import { Controller } from "@hotwired/stimulus"
 
-const myLatlng = { lat: 35.686067, lng: 139.760296 };
+const initLatlng = { lat: 35.686067, lng: 139.760296 };
 
+// Connects to data-controller="set-map"
 export default class extends Controller {
   static targets = ['map','latitude','longitude']
 
@@ -14,12 +15,12 @@ export default class extends Controller {
     const { Map } = await google.maps.importLibrary("maps");
 
     this.map = new Map(target, {
-      center: myLatlng,
+      center: initLatlng,
       zoom: 13,
     });
 
     this.marker = new google.maps.Marker({
-      position: myLatlng,
+      position: initLatlng,
       map:this.map,
       title: "Click to zoom",
     });
