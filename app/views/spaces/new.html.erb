@@ -52,7 +52,13 @@
       <% end %>
     </div>
 
+    <p>クリックしてピンを立ててください</p>
     <div id="map" data-map-target="map" class="h-[500px] mb-5"></div>
+
+    <%= form.label :images, class: 'form-control w-full max-w-xs' do %>
+      <div class="label"><span class="label-text">Images</span></div>
+      <%= form.file_field :images, muliple: true %>
+    <% end %>
 
     <%= form.submit class:"btn btn-primary" %>
 

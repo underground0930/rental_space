@@ -25,7 +25,13 @@ class SpacesController < ApplicationController
   end
 
   def create
-    # レコードを１つ作成
+    @space = Space.new(space_params)
+    if @space.save
+      redirect_to @space, success: "成功しました"
+    else
+      flash.now[:error] = "失敗しました"
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def show
@@ -42,6 +48,14 @@ class SpacesController < ApplicationController
 
   def destroy
     # レコードを１つ削除
+  end
+
+  private
+  
+  def space_params
+    params.require(:space).permit(
+      :name, :description, :address, :nearest_station, :space_type_id, 
+      :longitude, :latitude, feature_ids: [], images: [])
   end
 
 end
