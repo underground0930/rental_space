@@ -3,7 +3,7 @@ class SpacesController < ApplicationController
   def index
     # 一覧を表示
     @spaces = Space.all
-    if params[:space_type_ids].present?
+    if params[:space_type_id].present?
       @spaces = @spaces.joins(:space_type_mappings).where(space_type_mappings: {space_type_id: params[:space_type_id]})
     end
 
@@ -54,8 +54,7 @@ class SpacesController < ApplicationController
   
   def space_params
     params.require(:space).permit(
-      :name, :description, :address, :nearest_station, {space_type_ids:[]}, 
-      :longitude, :latitude, {feature_ids: []}, {images: []})
+      :name, :description, :address, :nearest_station, :space_type_ids, :longitude, :latitude, {feature_ids: []}, {images: []})
   end
 
 end
