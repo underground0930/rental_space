@@ -35,7 +35,7 @@ class SpacesController < ApplicationController
   end
 
   def show
-    # レコードを１つ表示
+    @space = Space.find(params[:id])
   end
 
   def edit
@@ -54,8 +54,7 @@ class SpacesController < ApplicationController
   
   def space_params
     params.require(:space).permit(
-      :name, :description, :address, :nearest_station, :space_type_id, 
-      :longitude, :latitude, feature_ids: [], images: [])
+      :name, :description, :address, :nearest_station, :space_type_ids, :longitude, :latitude, {feature_ids: []}, {images: []})
   end
 
 end

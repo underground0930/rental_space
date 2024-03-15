@@ -1,1 +1,50 @@
-show!
+
+<div class="w-[800px] mx-auto my-[100px]">
+    <div class="mb-5">
+      <%= link_to edit_space_path, class: "btn btn-secondary" do %>
+        Edit SPACE
+      <% end %>
+    </div>
+    <div class="form-control w-full max-w-xs">
+      <div class="label"><span class="label-text">Name</span></div>
+      <div class="text-xl p-2"><%= @space.name %></div>
+    </div>
+    <div class="form-control w-full max-w-xs">
+      <div class="label"><span class="label-text">Description</span></div>
+      <div class="text-xl p-2"><%= @space.description %></div>
+    </div>
+    <div class="form-control w-full max-w-xs">
+      <div class="label"><span class="label-text">Address</span></div>
+      <div class="text-xl p-2"><%= @space.address %></div>
+    </div>
+    <div class="form-control w-full max-w-xs">
+      <div class="label"><span class="label-text">Nearest station</span></div>
+      <div class="text-xl p-2"><%= @space.nearest_station %></div>
+    </div>
+    <div class="form-control w-full max-w-xs">
+      <div class="label"><span class="label-text">Space Types</span></div>
+      <div>
+        <ul>
+          <% @space.space_types.each do |space_type| %>
+            <li class="text-xl p-2"><%= space_type.name %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <div class="form-control w-full max-w-xs">
+      <div class="label"><span class="label-text">Features</span></div>
+      <div>
+        <ul>
+          <% @space.features.each do |feature| %>
+            <li class="text-xl p-2"><%= feature.name %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <div data-controller="show-map" 
+      data-show-map-latitude-value="<%= @space.latitude %>"
+      data-show-map-longitude-value="<%= @space.longitude %>"
+      class="h-[500px] my-5">
+    </div>
+</div>
+
