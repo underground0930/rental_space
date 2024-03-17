@@ -46,5 +46,14 @@
       data-show-map-longitude-value="<%= @space.longitude %>"
       class="h-[500px] my-5">
     </div>
+
+  <div class="carousel carousel-center rounded-box">
+    <% @space.images.each do |image| %>
+      <div class="carousel-item">
+        <%= image_tag image, class:'w-full' %>
+      </div>
+    <% end %>
+  </div>
+
 </div>
 

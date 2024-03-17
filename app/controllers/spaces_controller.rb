@@ -2,7 +2,8 @@ class SpacesController < ApplicationController
 
   def index
     # 一覧を表示
-    @spaces = Space.all
+    # @spaces = Space.includes(:features)
+    @spaces = Space.with_attached_images.includes(:features)
     if params[:space_type_id].present?
       @spaces = @spaces.joins(:space_type_mappings).where(space_type_mappings: {space_type_id: params[:space_type_id]})
     end
@@ -39,11 +40,17 @@ class SpacesController < ApplicationController
   end
 
   def edit
-    # レコードを１つ編集するためのフォームを表示
+    @space = Space.find(params[:id])
   end
 
   def update
-    # レコードを１つ編集
+    space = Space.find(params[:id])
+    if space.update(space_params)
+      redirect_to space, success: "更新しました"
+    else
+      flash.now[:error] = "失敗しました"
+      render :edit, status: :unprocessability_entity
+    end
   end
 
   def destroy
