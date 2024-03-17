@@ -2,8 +2,7 @@ class SpacesController < ApplicationController
 
   def index
     # 一覧を表示
-    # @spaces = Space.includes(:features)
-    @spaces = Space.with_attached_images.includes(:features)
+    @spaces = Space.all.includes(:features).order(created_at: :desc)
     if params[:space_type_id].present?
       @spaces = @spaces.joins(:space_type_mappings).where(space_type_mappings: {space_type_id: params[:space_type_id]})
     end
@@ -36,7 +35,7 @@ class SpacesController < ApplicationController
   end
 
   def show
-    @space = Space.find(params[:id])
+    @space = Space.with_attached_images.find(params[:id])
   end
 
   def edit
@@ -61,7 +60,7 @@ class SpacesController < ApplicationController
   
   def space_params
     params.require(:space).permit(
-      :name, :description, :address, :nearest_station, :space_type_ids, :longitude, :latitude, {feature_ids: []}, {images: []})
+      :name, :description, :address, :nearest_station, :space_type_ids, :longitude, :latitude, {feature_ids: []}, {images: []}, :rating)
   end
 
 end

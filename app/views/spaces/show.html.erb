@@ -10,6 +10,14 @@
       <div class="text-xl p-2"><%= @space.name %></div>
     </div>
     <div class="form-control w-full max-w-xs">
+      <div class="label"><span class="label-text">Rating</span></div>
+      <div class="rating">
+        <% @space.rating.times do %>
+          <div class="mask mask-star-2 bg-orange-400 w-[20px] h-[20px]"></div>
+        <% end %>
+      </div>
+    </div>
+    <div class="form-control w-full max-w-xs">
       <div class="label"><span class="label-text">Description</span></div>
       <div class="text-xl p-2"><%= @space.description %></div>
     </div>
