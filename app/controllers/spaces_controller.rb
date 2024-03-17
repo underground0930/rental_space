@@ -1,23 +1,8 @@
 class SpacesController < ApplicationController
 
   def index
-    # 一覧を表示
-    @spaces = Space.all.includes(:features).order(created_at: :desc)
-    if params[:space_type_id].present?
-      @spaces = @spaces.joins(:space_type_mappings).where(space_type_mappings: {space_type_id: params[:space_type_id]})
-    end
-
-    if params[:feature_ids].present? && !params[:feature_ids].all?(&:blank?)
-      @spaces = @spaces.joins(:feature_mappings).where(feature_mappings: {feature_id: params[:feature_ids]}).distinct
-    end
-
-    if params[:keyword].present?
-      @spaces = @spaces.where('spaces.name LIKE :keyword OR spaces.description LIKE :keyword OR spaces.address LIKE :keyword OR spaces.nearest_station LIKE :keyword',
-        keyword: '%#{params[:keyword]}%'
-      )
-    end
-
-    @pagy, @spaces = pagy(@spaces)
+    @q = Space.ransack(params[:q])
+    @pagy, @spaces = pagy(@q.result.with_attached_images.includes(:features).order(created_at: :desc))
   end
 
   def new
@@ -60,7 +45,7 @@ class SpacesController < ApplicationController
   
   def space_params
     params.require(:space).permit(
-      :name, :description, :address, :nearest_station, :space_type_ids, :longitude, :latitude, {feature_ids: []}, {images: []}, :rating)
+      :name, :description, :address, :nearest_station, {space_type_ids:[]}, :longitude, :latitude, {feature_ids: []}, {images: []}, :rating)
   end
 
 end

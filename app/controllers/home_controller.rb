@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    @space_types = SpaceType.all.pluck(:name)
+    @q = Space.ransack(params:[:q])
   end
 end
