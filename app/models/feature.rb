@@ -14,8 +14,4 @@ class Feature < ApplicationRecord
     ["id"]
   end
 
-  def self.ransackable_associations(auth_object = nil)
-    []
-  end
-
 end
