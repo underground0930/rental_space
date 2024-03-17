@@ -48,7 +48,7 @@ class SpacesController < ApplicationController
       redirect_to space, success: "更新しました"
     else
       flash.now[:error] = "失敗しました"
-      render :edit, status: :unprocessability_entity
+      render :edit, status: :unprocessable_entity
     end
   end
 

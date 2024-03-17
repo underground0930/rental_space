@@ -21,6 +21,7 @@ class Space < ApplicationRecord
   has_many :features, through: :feature_mappings
 
   validates :name, presence: true
+  validates :rating, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 5, only_integer: true }
 
   def main_image
     images.first || 'http://placehold.jp/300x200.png'
