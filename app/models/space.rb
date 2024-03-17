@@ -28,11 +28,11 @@ class Space < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ["address", "description", "name", "nearest_station","space_types_id"]
+    ["address", "description", "name", "nearest_station"]
   end
 
   def self.ransackable_associations(auth_object = nil)
-    ["space_type_mappings", "space_types", "feature_mappings", "features"]
+    ["space_types", "features"]
   end
 
 end
