@@ -51,8 +51,6 @@ gem 'pagy'
 
 gem 'annotate'
 
-gem 'dotenv', groups: [:development, :test]
-
 # Use Sass to process CSS
 # gem "sassc-rails"
 
@@ -65,6 +63,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'rspec-rails'
+
 end
 
 group :development do
@@ -72,6 +71,7 @@ group :development do
   gem 'rubocop'
   gem 'rubocop-rails', require: false
   gem 'web-console'
+  gem "bullet"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"

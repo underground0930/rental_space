@@ -2,7 +2,8 @@ class SpacesController < ApplicationController
 
   def index
     # 一覧を表示
-    @spaces = Space.with_attached_images
+    # @spaces = Space.includes(:features)
+    @spaces = Space.with_attached_images.includes(:features)
     if params[:space_type_id].present?
       @spaces = @spaces.joins(:space_type_mappings).where(space_type_mappings: {space_type_id: params[:space_type_id]})
     end
