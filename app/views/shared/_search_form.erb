@@ -1,10 +1,10 @@
-<%= form_with(url: spaces_path, method: :get, local: true) do |form| %>
+<%= search_form_for @q, url: spaces_path do |form| %>
   <div class="flex gap-[30px]">
     <div class="w-[200px]">
-      <%= form.collection_select :space_type_id, SpaceType.all, :id, :name, {include_blank: '会場タイプ',selected: params[:space_type_id]}, {class: "select select-bordered w-full max-w-xs"} %>
+      <%= form.collection_select :space_types_id_eq, SpaceType.all, :id, :name, {include_blank: '会場タイプ'}, {class: "select select-bordered w-full max-w-xs"} %>
     </div>
     <div class="w-[300px]">
-      <%= form.text_field :keyword, class: 'input input-bordered w-full max-w-xs', placeholder:"キーワード", value: params[:keyword] %>
+      <%= form.text_field :name_or_description_or_address_or_nearest_station_cont, class: 'input input-bordered w-full max-w-xs', placeholder:"キーワード" %>
     </div>
     <div>
       <label for="my_modal_6" class="btn btn-active">こだわり条件</label>
@@ -13,12 +13,12 @@
         <div class="modal-box">
           <h3 class="font-bold text-lg text-center">こだわり条件</h3>
           <div class="w-[400px] flex flex-wrap">
-            <%= form.collection_check_boxes :feature_ids, Feature.all, :id, :name do |b| %>
+            <%= form.collection_check_boxes :features_id_eq_any, Feature.all, :id, :name do |b| %>
             <div class="form-control mr-2">
               <%= b.label class: "label cursor-pointer" do %>
                 <span class="label-text"><%= b.text %></span>
                 <span class="inline-block w-[10px]"></span>
-                <%= b.check_box checked: params[:feature_ids]&.include?(b.value.to_s), class: "checkbox checkbox-primary" %>
+                <%= b.check_box class: "checkbox checkbox-primary" %>
               <% end %>
             </div>
             <% end %>
