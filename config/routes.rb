@@ -8,8 +8,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
 
-    get 'login', to: 'sesstions#new'
+    get 'login', to: 'sessions#new'
     post 'login', to: "sessions#create"
-    delete "logout", to: "sessions#destroy"
+    delete "sign_out", to: "sessions#destroy"
   end
 end
