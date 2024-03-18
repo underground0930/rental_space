@@ -6,8 +6,10 @@
   </div>
   <div class="navbar-end">
     <div>
-      <%= link_to new_space_path, class: "btn btn-primary" do %>
-        + NEW SPACE
+      <% if current_user&.admin? %>
+        <%= link_to new_space_path, class: "btn btn-primary" do %>
+          + NEW SPACE
+        <% end %>
       <% end %>
     </div>
     <div>
@@ -27,13 +29,9 @@
         </div>
       </div>
       <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-        <li>
-          <a class="justify-between">
-            Profile
-          </a>
-        </li>
-        <li><a>Settings</a></li>
-        <li><a>Logout</a></li>
+        <% if user_signed_in? %>
+          <li><%= button_to "ログアウト", destroy_user_session_path , method: :delete, data: { turbo_method: :delete } %></li>
+        <% end %>
       </ul>
     </div>
   </div>

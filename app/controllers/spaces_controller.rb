@@ -1,4 +1,6 @@
 class SpacesController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :check_admin, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     @q = Space.ransack(params[:q])
@@ -46,6 +48,10 @@ class SpacesController < ApplicationController
   def space_params
     params.require(:space).permit(
       :name, :description, :address, :nearest_station, {space_type_ids:[]}, :longitude, :latitude, {feature_ids: []}, {images: []}, :rating)
+  end
+
+  def check_admin
+    redirect_to(root_path, error: "権限がありません") unless current_user&.admin?
   end
 
 end
