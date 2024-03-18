@@ -6,8 +6,10 @@
   </div>
   <div class="navbar-end">
     <div>
-      <%= link_to new_space_path, class: "btn btn-primary" do %>
-        + NEW SPACE
+      <% if current_user&.admin? %>
+        <%= link_to new_space_path, class: "btn btn-primary" do %>
+          + NEW SPACE
+        <% end %>
       <% end %>
     </div>
     <div>

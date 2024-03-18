@@ -51,7 +51,7 @@ class SpacesController < ApplicationController
   end
 
   def check_admin
-    redirect_to(root_path, alert: "権限がありません") unless current_user&.admin?
+    redirect_to(root_path, error: "権限がありません") unless current_user&.admin?
   end
 
 end

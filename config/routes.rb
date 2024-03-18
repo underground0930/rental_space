@@ -7,9 +7,6 @@ Rails.application.routes.draw do
   resources :spaces
 
   namespace :admin do
-    get 'sessions/new'
-    get 'sessions/create'
-    get 'sessions/destroy'
 
     get 'login', to: 'sesstions#new'
     post 'login', to: "sessions#create"

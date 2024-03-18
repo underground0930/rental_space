@@ -1,6 +1,11 @@
 <div class="m-10">
   <% flash.each do |message_type, message| %>
+    <% 
+      message_type = 'success' if message_type == 'notice'
+      message_type = 'error' if message_type == 'alert'
+    %>
     <div role="alert" class="alert alert-<%= message_type %> justify-start">
+      <%= message_type %>
       <%= render "shared/flash/#{message_type}" %>
       <span><%= message %></span>
     </div>
